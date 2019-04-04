@@ -1,5 +1,6 @@
 import express from 'express';
 import config from '../../config/config';
+import userLoginRoute from './user.login.route';
 import scrivenerRoute from './scrivener.route';
 
 const router = express.Router();
@@ -11,6 +12,8 @@ router.post('/', (req, res) => res.send('Got a POST request'));
 router.put('/', (req, res) => res.send('Got a PUT request at /user'));
 
 router.delete('/', (req, res) => res.send('Got a DELETE request at /user'));
+
+router.use('/userlogin', userLoginRoute);
 
 router.use('/scrivener', scrivenerRoute);
 

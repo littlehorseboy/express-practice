@@ -1,9 +1,9 @@
 import scrivenerModule from '../modules/scrivener.module';
 
 const getFolders = (req, res) => {
-  scrivenerModule.selectFolders()
+  scrivenerModule.selectFolder()
     .then(result => res.send(result))
-    .catch(err => res.send(err));
+    .catch(error => res.send(error));
 };
 
 export default {

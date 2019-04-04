@@ -4,20 +4,20 @@ import config from '../../config/config';
 
 const { mLabUrl, mLabDBName } = config;
 
-const selectFolder = () => new Promise((resolve, reject) => {
+const selectUser = (account, password) => new Promise((resolve, reject) => {
   MongoClient.connect(mLabUrl, { useNewUrlParser: true }, (connectError, client) => {
     if (connectError) {
       reject(connectError);
     }
     assert.strictEqual(connectError, null);
 
-    const collection = client.db(mLabDBName).collection('folders');
+    const collection = client.db(mLabDBName).collection('users');
 
-    collection.findOne({ userId: '123' }, { projection: { folders: 1 } })
+    collection.countDocuments({ account, password })
       .then((result) => {
-        assert.strictEqual(typeof result, 'object');
+        assert.strictEqual(typeof result, 'number');
 
-        resolve(result);
+        resolve(result.toString());
         client.close();
       })
       .catch((error) => {
@@ -28,5 +28,5 @@ const selectFolder = () => new Promise((resolve, reject) => {
 });
 
 export default {
-  selectFolder,
+  selectUser,
 };
