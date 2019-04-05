@@ -4,7 +4,7 @@ import config from '../../config/config';
 
 const { mLabUrl, mLabDBName } = config;
 
-const selectUser = (account, password) => new Promise((resolve, reject) => {
+const findOneUser = (account, password) => new Promise((resolve, reject) => {
   MongoClient.connect(mLabUrl, { useNewUrlParser: true }, (connectError, client) => {
     if (connectError) {
       reject(connectError);
@@ -13,11 +13,11 @@ const selectUser = (account, password) => new Promise((resolve, reject) => {
 
     const collection = client.db(mLabDBName).collection('users');
 
-    collection.countDocuments({ account, password })
+    collection.findOne({ account, password })
       .then((result) => {
-        assert.strictEqual(typeof result, 'number');
+        assert.strictEqual(typeof result, 'object');
 
-        resolve(result.toString());
+        resolve(result);
         client.close();
       })
       .catch((error) => {
@@ -28,5 +28,5 @@ const selectUser = (account, password) => new Promise((resolve, reject) => {
 });
 
 export default {
-  selectUser,
+  findOneUser,
 };

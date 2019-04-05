@@ -4,6 +4,6 @@ import userLoginCtrl from '../controllers/user.login.controller';
 const router = express.Router();
 
 router.route('/')
-  .post(userLoginCtrl.login);
+  .post(userLoginCtrl.findOneUser);
 
 export default router;
