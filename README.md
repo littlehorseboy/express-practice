@@ -1,3 +1,3 @@
 ```
-npm run start.js
+npm run start
 ```
