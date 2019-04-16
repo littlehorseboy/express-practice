@@ -13,7 +13,7 @@ const selectFolder = () => new Promise((resolve, reject) => {
 
     const collection = client.db(mLabDBName).collection('folders');
 
-    collection.findOne({ userId: '123' }, { projection: { folders: 1 } })
+    collection.findOne({ userId: '5ca81987dc63c3bb709c37ff' }, { projection: { folders: 1 } })
       .then((result) => {
         assert.strictEqual(typeof result, 'object');
 
