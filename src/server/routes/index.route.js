@@ -3,6 +3,7 @@ import config from '../../config/config';
 import userLoginRoute from './user.login.route';
 import userRegisterRoute from './user.register.route';
 import scrivenerRoute from './scrivener.route';
+import fileRoute from './file.route';
 
 const router = express.Router();
 
@@ -19,5 +20,7 @@ router.use('/userlogin', userLoginRoute);
 router.use('/userregiter', userRegisterRoute);
 
 router.use('/scrivener', scrivenerRoute);
+
+router.use('/file', fileRoute);
 
 export default router;

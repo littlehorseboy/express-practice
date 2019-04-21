@@ -28,10 +28,11 @@ const insertOneUser = (account, password, email) => new Promise((resolve, reject
                   assert.strictEqual(typeof findOneUserResult, 'object');
 
                   resolve(findOneUserResult);
-                  client.close();
                 })
                 .catch((error) => {
                   reject(error);
+                })
+                .then(() => {
                   client.close();
                 });
             })

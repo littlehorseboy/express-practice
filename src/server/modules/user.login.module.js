@@ -18,10 +18,11 @@ const findOneUser = (account, password) => new Promise((resolve, reject) => {
         assert.strictEqual(typeof result, 'object');
 
         resolve(result);
-        client.close();
       })
       .catch((error) => {
         reject(error);
+      })
+      .then(() => {
         client.close();
       });
   });
