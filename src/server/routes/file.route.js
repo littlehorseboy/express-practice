@@ -6,4 +6,7 @@ const router = express.Router();
 router.route('/')
   .get(fileCtrl.getFile);
 
+router.route('/')
+  .put(fileCtrl.putFile);
+
 export default router;

@@ -41,11 +41,11 @@ const insertOrUpdateFile = file => new Promise((resolve, reject) => {
     collection.findOne({ fileId: file.fileId })
       .then((result) => {
         if (result !== null) {
-          collection.updateOne({ fileId: file.fileId }, { file })
+          collection.updateOne({ fileId: file.fileId }, { $set: file })
             .then(updateResult => resolve(updateResult))
             .catch(updateError => reject(updateError));
         } else {
-          collection.insertOne({ file })
+          collection.insertOne(file)
             .then(insertResult => resolve(insertResult))
             .catch(insertError => reject(insertError));
         }
